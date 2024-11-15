@@ -1,9 +1,11 @@
+"""Импорты."""
 from django.shortcuts import render, get_object_or_404
 from blog.models import Post, Category
 from datetime import datetime
 
 
 def index(request):
+    """Главная страница."""
     template = 'blog/index.html'
     post_list = Post.objects.filter(
         is_published=True,
@@ -15,7 +17,9 @@ def index(request):
     }
     return render(request, template, context)
 
+
 def post_detail(request, id: int):
+    """Страница отдельного поста."""
     template = 'blog/detail.html'
     current_post = get_object_or_404(
         Post.objects.filter(
@@ -32,6 +36,7 @@ def post_detail(request, id: int):
 
 
 def category_posts(request, category_slug):
+    """Страница категорий."""
     template = 'blog/category.html'
     category = get_object_or_404(
         Category,
@@ -49,4 +54,3 @@ def category_posts(request, category_slug):
     }
 
     return render(request, template, context)
-
