@@ -10,8 +10,7 @@ def index(request):
     post_list = Post.objects.filter(
         is_published=True,
         category__is_published=True,
-        pub_date__date__lt=datetime.now()
-        )[0:5]
+        pub_date__date__lt=datetime.now())[0:5]
     context = {
         'post_list': post_list
     }
