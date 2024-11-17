@@ -1,4 +1,3 @@
-"""импорт моделей."""
 from django.db import models
 from django.contrib.auth import get_user_model
 
@@ -19,8 +18,6 @@ class BaseModel(models.Model):
     )
 
     class Meta:
-        """Мета."""
-
         abstract = True
 
 
@@ -43,13 +40,10 @@ class Category(BaseModel):
     )
 
     class Meta:
-        """Мета."""
-
         verbose_name = 'категория'
         verbose_name_plural = 'Категории'
 
     def __str__(self):
-        """Магический метод."""
         return self.title
 
 
@@ -62,13 +56,10 @@ class Location(BaseModel):
     )
 
     class Meta:
-        """Мета."""
-
         verbose_name = 'местоположение'
         verbose_name_plural = 'Местоположения'
 
     def __str__(self):
-        """Магический метод."""
         return self.name
 
 
@@ -111,13 +102,10 @@ class Post(BaseModel):
     )
 
     class Meta:
-        """Мета."""
-
         default_related_name = 'posts'
         verbose_name = 'публикация'
         verbose_name_plural = 'Публикации'
         ordering = ('-pub_date',)
 
     def __str__(self):
-        """Магический метод."""
         return self.title

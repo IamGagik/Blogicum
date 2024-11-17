@@ -1,7 +1,8 @@
-"""Импорты."""
 from django.shortcuts import render, get_object_or_404
 from blog.models import Post, Category
-from datetime import datetime
+from django.utils import timezone
+
+now = timezone.now()
 
 
 def index(request):
@@ -10,7 +11,7 @@ def index(request):
     post_list = Post.objects.filter(
         is_published=True,
         category__is_published=True,
-        pub_date__date__lt=datetime.now())[0:5]
+        pub_date__date__lt=now)[0:5]
     context = {
         'post_list': post_list
     }
@@ -24,7 +25,7 @@ def post_detail(request, id: int):
         Post.objects.filter(
             is_published=True,
             category__is_published=True,
-            pub_date__date__lt=datetime.now()
+            pub_date__date__lt=now
         ),
         id=id
     )
@@ -45,7 +46,7 @@ def category_posts(request, category_slug):
     post_list = Post.objects.filter(
         category=category,
         is_published=True,
-        pub_date__date__lt=datetime.now())
+        pub_date__date__lt=now)
 
     context = {
         'category': category,
